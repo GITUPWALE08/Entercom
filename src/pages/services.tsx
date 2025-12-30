@@ -101,27 +101,29 @@ const Services = () => {
 
  
 
-      <div className="container mx-auto px-6 -mt-10">
+      <div className="grid md:grid-cols-2 gap-12 items-center m p-10 bg-white">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="inline-block p-3 bg-blue-100 text-blue-600 rounded-xl mb-4">
-            <ServerIcon size={32} />
+          <div>
+            <div className="inline-block p-3 bg-blue-100 text-blue-600 rounded-xl mb-4">
+              <ServerIcon size={32} />
+            </div>
+            <h2 className="text-3xl font-bold text-ess-navy mb-4">Services We Are Expanding Into...</h2>
+            <p className="text-gray-600 mb-6">
+              As Entercom Security grows, we plan to expand into additional solutions such as:
+            </p>
+            <ul className="space-y-3">
+              {['Fire & safety alert systems', 'Farm and perimeter security', 'Advanced access control', 'Structured cabling and power backup'].map(item => (
+                <li key={item} className="flex items-center gap-3">
+                  <Check size={18} className="text-green-500" />
+                  <span className="font-medium text-gray-700">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <h2 className="text-3xl font-bold text-ess-navy mb-4">Services We Are Expanding Into...</h2>
-          <p className="text-gray-600 mb-6">
-            As Entercom Security grows, we plan to expand into additional solutions such as:
-          </p>
-          <ul className="space-y-3">
-            {['Fire & safety alert systems', 'Farm and perimeter security', 'Advanced access control', 'Structured cabling and power backup'].map(item => (
-              <li key={item} className="flex items-center gap-3">
-                <Check size={18} className="text-green-500" />
-                <span className="font-medium text-gray-700">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="bg-gray-100 rounded-2xl h-64 md:h-80 w-full flex items-center justify-center text-gray-400">
-            {/* Placeholder for Rack Image */}
-            <Box size={64} opacity={0.2} />
+          <div className="bg-gray-100 rounded-2xl h-64 md:h-80 w-full flex items-center justify-center text-gray-400">
+              {/* Placeholder for Rack Image */}
+              <Box size={64} opacity={0.2} />
+          </div>
         </div>
       </div>
 
