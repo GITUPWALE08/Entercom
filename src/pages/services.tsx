@@ -101,7 +101,7 @@ const Services = () => {
 
  
 
-      <div className="grid md:grid-cols-2 gap-12 items-center m-20 p-10 bg-white">
+      <div className="grid md:grid-cols-2 gap-12 items-center my-20 p-10 bg-white">
         <div>
           <div className="inline-block p-3 bg-blue-100 text-blue-600 rounded-xl mb-4">
             <ServerIcon size={32} />
