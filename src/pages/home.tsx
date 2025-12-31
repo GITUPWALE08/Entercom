@@ -102,7 +102,7 @@ const Home = () => {
       </section>
 
       {/* Stats Section - Floating Cards on Desktop */}
-      <section className="relative z-20 -mt-8 md:-mt-16 px-6">
+      {/* <section className="relative z-20 -mt-8 md:-mt-16 px-6">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <StatCard value="$167B" label="Global Market" sub="Projected 2025" />
@@ -110,10 +110,10 @@ const Home = () => {
             <StatCard value="100+" label="Partners" sub="Integrated Tech" color="text-blue-600" />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Services Grid */}
-      <section className="py-20 lg:py-32 bg-gray-50/50">
+      <section className="py-10 lg:py-32 bg-gray-50/50">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-6">
             <div className="max-w-2xl">
@@ -125,7 +125,7 @@ const Home = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-12 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             {services.map((service) => (
               <ServiceCard 
                 key={service.id} 
@@ -146,8 +146,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20 lg:pt-10 bg-gray-50/50">
-        <div className="bg-slate-50 rounded-3xl p-8 md:p-12 text-center border border-slate-100 mb-3">
+      <section className="py-1 lg:pt-1 bg-gray-50/50">
+        <div className="bg-slate-50 rounded-3xl p-8 md:p-12 text-center border border-slate-100 ">
           <h2 className="text-2xl font-bold text-ess-navy mb-8">How We Work</h2>
           <div className="grid md:grid-cols-4 gap-8">
             <div>
@@ -170,8 +170,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-20 lg:py-10 bg-gray-50/50">
-        <div className="bg-slate-50 rounded-3xl p-8 md:p-12 text-center border border-slate-100 mb-3">
+      <section className="py-10 lg:py-10 bg-gray-50/50">
+        <div className="bg-slate-50 rounded-3xl p-8 md:p-12 text-center border border-slate-100 mb-1">
           <h2 className="text-2xl font-bold text-ess-navy mb-8">Why Choose Entercom Security?</h2>
           <div className="grid md:grid-cols-4 gap-8">
             <div>
@@ -209,13 +209,13 @@ const Home = () => {
 };
 
 // Helper Components
-const StatCard = ({ value, label, sub, color = "text-ess-navy" }: any) => (
-  <div className="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-b-transparent hover:border-b-ess-purple transition-all transform hover:-translate-y-1">
-    <h3 className={`text-4xl lg:text-5xl font-black ${color} mb-2`}>{value}</h3>
-    <p className="text-sm font-bold text-gray-800 uppercase tracking-wide">{label}</p>
-    <p className="text-xs text-gray-500 mt-1">{sub}</p>
-  </div>
-);
+// const StatCard = ({ value, label, sub, color = "text-ess-navy" }: any) => (
+//   <div className="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-b-transparent hover:border-b-ess-purple transition-all transform hover:-translate-y-1">
+//     <h3 className={`text-4xl lg:text-5xl font-black ${color} mb-2`}>{value}</h3>
+//     <p className="text-sm font-bold text-gray-800 uppercase tracking-wide">{label}</p>
+//     <p className="text-xs text-gray-500 mt-1">{sub}</p>
+//   </div>
+// );
 
 const ServiceCard = ({ icon, title, desc, color, bg, feature }: any) => (
   <Link to="/services" className="group p-8 rounded-3xl border border-gray-100 bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-start gap-4 hover:-translate-y-2">
