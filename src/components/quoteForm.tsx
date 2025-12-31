@@ -1,97 +1,130 @@
-import React, { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+
 
 const QuoteForm = () => {
-  const [status, setStatus] = useState("");
+  const form = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const data = new FormData(form);
+    if (!form.current) return;
 
-    try {
-      setStatus("sending");
-      const response = await fetch("https://formspree.io/f/YOUR_FORMSPREE_ID", {
-        method: "POST",
-        body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+    setStatus("sending");
 
-      if (response.ok) {
+    // YOUR KEYS
+    const serviceID = 'service_xuey6ic';
+    const adminTemplateID = 'template_ackfkbb';      // <--- Template 1
+    const clientTemplateID = 'template_ucyz78v';  // <--- Template 2
+    const publicKey = 'IStWkpLTErGOLGur2';
+
+    // 1. Send Admin Email (To You)
+    emailjs.sendForm(serviceID, adminTemplateID, form.current, publicKey)
+      .then(() => {
+        // 2. Send Client Email (To Them)
+        // We extract the data to send it again
+        const formData = new FormData(form.current!);
+        const data: Record<string, unknown> = {};
+        formData.forEach((value, key) => (data[key] = value));
+        
+        return emailjs.send(serviceID, clientTemplateID, data, publicKey);
+      })
+      .then(() => {
         setStatus("success");
-        form.reset();
-      } else {
+        form.current?.reset();
+      })
+      .catch((error) => {
+        console.error("Failed...", error);
         setStatus("error");
-      }
-    } catch (error) {
-      setStatus("error");
-    }
+      });
   };
 
   if (status === "success") {
     return (
-      <div className="bg-green-50 p-8 rounded-2xl text-center border border-green-100">
-        <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+      <div className="bg-green-50 p-8 rounded-2xl text-center border border-green-100 h-full flex flex-col items-center justify-center">
+        <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
           <CheckCircle size={32} />
         </div>
-        <h3 className="text-2xl font-bold text-green-800 mb-2">Quote Requested!</h3>
-        <p className="text-green-700">Thank you. We have received your details and a copy has been sent to your email. Our team will contact you shortly.</p>
-        <button onClick={() => setStatus("")} className="mt-6 text-green-700 font-bold underline">Send another</button>
+        <h3 className="text-2xl font-bold text-green-800 mb-2">Request Received!</h3>
+        <p className="text-green-700 mb-6">
+          We have sent a confirmation to your email.<br/>
+          An Entercom engineer will review your project and call you shortly.
+        </p>
+        <button 
+          onClick={() => setStatus("idle")} 
+          className="text-ess-purple font-bold hover:underline"
+        >
+          Submit another request
+        </button>
       </div>
     );
   }
 
-return (
-  <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-gray-100">
-    <div>
-      <h3 className="text-2xl font-bold text-ess-navy mb-2">Get a Free Quote</h3>
-      <p className="text-gray-500 text-sm mb-4">Fill out the form below to get started.</p>
-    </div>
-    
-    <div className="grid md:grid-cols-2 gap-4">
+  return (
+    <form ref={form} onSubmit={sendEmail} className="space-y-5 bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-gray-100">
       <div>
-        <label className="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Full Name</label>
-        <input required type="text" name="name" className="w-full px-4 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-ess-purple focus:border-transparent outline-none transition text-base" placeholder="John Doe" />
+        <h3 className="text-2xl font-bold text-ess-navy mb-2">Get a Free Quote</h3>
+        <p className="text-gray-500 text-sm">Fill out the form below. We usually reply within 24 hours.</p>
       </div>
-      <div>
-        <label className="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Email Address</label>
-        <input required type="email" name="email" className="w-full px-4 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-ess-purple focus:border-transparent outline-none transition text-base" placeholder="john@company.com" />
-      </div>
-    </div>
-
-    <div className="grid md:grid-cols-2 gap-4">
-      <div>
-        <label className="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Phone Number</label>
-        <input required type="tel" name="phone" className="w-full px-4 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-ess-purple focus:border-transparent outline-none transition text-base" placeholder="+234..." />
-      </div>
-      <div>
-        <label className="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Service Type</label>
-        <div className="relative">
-          <select name="service" className="w-full px-4 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-ess-purple focus:border-transparent outline-none transition appearance-none text-base">
-            <option>Video Surveillance</option>
-            <option>Access Control</option>
-            <option>Farm Security</option>
-            <option>Smart Home Setup</option>
-            <option>General Inquiry</option>
-          </select>
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+      
+      <div className="grid md:grid-cols-2 gap-5">
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-500 uppercase ml-1">Full Name</label>
+          <input required type="text" name="user_name" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-ess-purple focus:border-transparent outline-none transition" placeholder="Enter your name" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-500 uppercase ml-1">Email Address</label>
+          <input required type="email" name="user_email" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-ess-purple focus:border-transparent outline-none transition" placeholder="name@company.com" />
         </div>
       </div>
-    </div>
 
-    <div>
-      <label className="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Project Details</label>
-      <textarea required name="message" rows={4} className="w-full px-4 py-4 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-ess-purple focus:border-transparent outline-none transition text-base" placeholder="Describe your project..."></textarea>
-    </div>
+      <div className="grid md:grid-cols-2 gap-5">
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-500 uppercase ml-1">Phone Number</label>
+          <input required type="tel" name="user_phone" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-ess-purple focus:border-transparent outline-none transition" placeholder="+234..." />
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-500 uppercase ml-1">Service Required</label>
+          <div className="relative">
+            <select name="service_type" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-ess-purple focus:border-transparent outline-none transition appearance-none cursor-pointer">
+              <option>Video Surveillance</option>
+              <option>Access Control</option>
+              <option>Farm Security</option>
+              <option>Smart Home Setup</option>
+              <option>Fire & Safety Systems</option>
+              <option>General Inquiry</option>
+            </select>
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+          </div>
+        </div>
+      </div>
 
-    <button disabled={status === "sending"} type="submit" className="w-full bg-ess-purple hover:bg-ess-darkPurple text-white py-4 md:py-5 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-purple-200 active:scale-[0.98]">
-      {status === "sending" ? "Sending..." : "Submit Request"}
-      {!status && <Send size={20} />}
-    </button>
-  </form>
-);
+      <div className="space-y-1">
+        <label className="text-xs font-bold text-gray-500 uppercase ml-1">Project Details</label>
+        <textarea required name="message" rows={4} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-ess-purple focus:border-transparent outline-none transition resize-none" placeholder="Describe your project location and needs..."></textarea>
+      </div>
+
+      {status === "error" && (
+        <div className="flex items-center gap-2 text-red-600 text-sm bg-red-50 p-3 rounded-lg border border-red-100">
+          <AlertCircle size={16} />
+          <span>Connection failed. Please call us directly.</span>
+        </div>
+      )}
+
+      <button 
+        disabled={status === "sending"} 
+        type="submit" 
+        className="w-full bg-ess-purple hover:bg-ess-darkPurple text-white py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 shadow-lg shadow-purple-200 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+      >
+        {status === "sending" ? (
+          <>Sending... <Loader2 className="animate-spin" size={20} /></>
+        ) : (
+          <>Submit Request <Send size={20} /></>
+        )}
+      </button>
+    </form>
+  );
 };
 
 export default QuoteForm;
