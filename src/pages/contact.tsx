@@ -31,7 +31,7 @@ const Contact = () => {
               </div>
               <h3 className="font-bold text-gray-900">Email</h3>
               <p className="text-gray-500 text-sm mb-2">Our friendly team is here to help.</p>
-              <a href="mailto:sales@entercomsecsys.com" className="text-ess-purple font-semibold">sales@entercomsecsys.com</a>
+              <a href="mailto:sales@entercomsecsys.com" className="text-ess-purple font-semibold">sales@entercomsecurity.com</a>
             </div>
 
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">

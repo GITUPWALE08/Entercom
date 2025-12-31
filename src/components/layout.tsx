@@ -43,7 +43,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="bg-ess-navy text-white text-xs py-2 px-4 hidden md:flex justify-between items-center">
           <div className="flex gap-4">
             <span className="flex items-center gap-1 opacity-80 hover:opacity-100 transition"><Phone size={13} /> Call for Free Site Check</span>
-            <span className="flex items-center gap-1 opacity-80 hover:opacity-100 transition"><Mail size={13} /> sales@entercomsecsys.com</span>
+            <span className="flex items-center gap-1 opacity-80 hover:opacity-100 transition"><Mail size={13} /> sales@entercomsecurity.com</span>
           </div>
           <div className="flex gap-4 opacity-80">
             <Link to="/contact" className="hover:text-white transition">Support</Link>
