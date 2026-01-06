@@ -120,7 +120,7 @@ const Services = () => {
               ))}
             </ul>
           </div>
-          <div className="bg-gray-100 rounded-2xl h-64 md:h-80 w-full flex items-center justify-center text-gray-400">
+          <div className="bg-white rounded-2xl h-64 md:h-80 w-full flex items-center justify-center text-gray-400">
             {/* Placeholder for Cable Image */}
             {/* <CameraIcon size={64} opacity={0.5} /> */}
             <img 
