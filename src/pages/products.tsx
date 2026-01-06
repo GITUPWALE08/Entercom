@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BatteryCharging, Lock, Box, Check, CameraIcon, ChevronRight, AlertCircle } from 'lucide-react';
+import { BatteryCharging, Lock, Check, CameraIcon, ChevronRight, AlertCircle } from 'lucide-react';
 import camera from '../assets/camera4.jpg';
 import alert from '../assets/alert.jpg';
 import smart from '../assets/smart.jpg';
