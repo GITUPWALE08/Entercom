@@ -200,9 +200,8 @@ const Products = () => {
         </div>
 
         {/* product expansion */}
-
-        <div className="grid md:grid-cols-2 gap-12 items-center m-20 p-10 bg-gray-50/50 border border-slate-100">
-          <div >
+        <div className="grid md:grid-cols-2 gap-12 items-center m-2 bg-gray-50/50 border border-slate-100 rounded-3xl">
+          <div className='p-10'>
             {/* <div className="inline-block p-3 bg-blue-100 text-blue-600 rounded-xl mb-4">
               <ServerIcon size={32} />
             </div> */}

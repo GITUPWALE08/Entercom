@@ -3,13 +3,13 @@ import { ArrowRight, ShieldCheck, Activity } from 'lucide-react';
 const HeroSection: React.FC = () => {
   return (
     <section className="
+      sticky
       hidden lg:flex
       flex-1
       bg-slate-950
       overflow-hidden
-      sticky
       top-20
-      max-h-[calc(100vh-80px)]
+      max-h-[calc(100vh)]
       border-r border-slate-800/50
       lg:min-w-[35vw]
       lg:max-w-[55vw]
@@ -49,7 +49,7 @@ const HeroSection: React.FC = () => {
             </h1>
 
             <p className="text-lg text-slate-400 mb-8 leading-relaxed max-w-lg">
-              Complete physical and digital protection. Interface with your security infrastructure using our next-generation IoT dashboard.
+              Complete physical and digital protection. Powered by state-of-the-art security technology.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
