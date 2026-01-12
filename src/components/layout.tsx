@@ -171,7 +171,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <div>
                   <h4 className="text-white font-bold mb-4">Office</h4>
                   <p className="text-sm">Oyo & Lagos, Nigeria</p>
-                  <p className="text-sm mt-2">+234 800 123 4567</p>
                   <p className="text-sm mt-2">+234 816 739 2243</p>
                 </div>
               </div>

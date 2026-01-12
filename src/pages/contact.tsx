@@ -22,7 +22,7 @@ const Contact = () => {
               </div>
               <h3 className="font-bold text-gray-900">Phone</h3>
               <p className="text-gray-500 text-sm mb-2">Mon-Fri from 8am to 5pm.</p>
-              <a href="tel:+2348001234567" className="text-ess-purple font-semibold">+234 800 123 4567</a>
+              <a href="tel:+2348167392243" className="text-ess-purple font-semibold">+234 816 739 2243</a>
             </div>
 
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
