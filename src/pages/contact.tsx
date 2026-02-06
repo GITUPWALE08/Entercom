@@ -1,5 +1,5 @@
 import QuoteForm from '../components/quoteForm';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, InstagramIcon, FacebookIcon, Users } from 'lucide-react';
 
 const Contact = () => {
   return (
@@ -41,6 +41,18 @@ const Contact = () => {
               <h3 className="font-bold text-gray-900">Office</h3>
               <p className="text-gray-500 text-sm mb-2">Come say hello at our office HQ.</p>
               <p className="text-ess-navy font-medium">Lagos, Nigeria</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+              <div className="w-12 h-12 bg-blue-50 text-ess-blue rounded-lg flex items-center justify-center mb-4">
+                <Users size={24} />
+              </div>
+              <h3 className="font-bold text-gray-900">Socials</h3>
+              <p className="text-gray-500 text-sm mb-2">Reach out to us on our social media pages:</p>
+              <a href="https://www.instagram.com/p/DUWwu5xiA70/?igsh=anI1aTVoaGQ5MzJq" className="text-ess-purple font-semibold flex mt-4"><InstagramIcon size={24}/>  Instagram</a>
+
+
+              <a href="https://www.facebook.com/share/p/1GynGrWXhM/" className="text-ess-purple font-semibold flex mt-4"><FacebookIcon size={24} /> Facebook</a>
             </div>
           </div>
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail, ArrowRight } from 'lucide-react';
+import { Menu, X, Phone, Mail, ArrowRight, FacebookIcon, InstagramIcon} from 'lucide-react';
 import logo from '../assets/logo.png';
 import HeroSection from './hero';
 
@@ -174,7 +174,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <p className="text-sm p-0 mt-2">+234 816 739 2243</p>
                   <p className="text-sm p-0 mt-2">+234 813 031 8817</p>
                 </div>
+
+                <div>
+                  <h4 className="text-white font-bold mb-4">Socials</h4>
+                  <p className="text-gray-500 text-sm mb-2">Reach out to us on our social media pages:</p>
+                  <a href="https://www.instagram.com/p/DUWwu5xiA70/?igsh=anI1aTVoaGQ5MzJq" className="text-ess-purple font-semibold flex mt-4"><InstagramIcon size={24}/>  Instagram</a>
+
+
+                  <a href="https://www.facebook.com/share/p/1GynGrWXhM/" className="text-ess-purple font-semibold flex mt-4"><FacebookIcon size={24} /> Facebook</a>
+                </div>
               </div>
+
+
               <div className="border-t border-slate-800 mt-12 pt-8 text-xs text-slate-600 flex justify-between items-center">
                 <span>© {new Date().getFullYear()} Entercom Security Systems.</span>
                 <span>Privacy Policy</span>
