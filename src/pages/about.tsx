@@ -84,9 +84,9 @@ const About = () => {
           </div>
         </div>
 
-        {/* Vission */}
+        {/* Vision */}
         <div className="bg-slate-50 rounded-3xl p-8 md:p-12 text-center border border-slate-100 mb-3">
-            <h2 className="text-2xl font-bold text-ess-navy mb-8">Our Vission</h2>
+            <h2 className="text-2xl font-bold text-ess-navy mb-8">Our Vision</h2>
             <p className="text-gray-600 text-sm">Our long-term vision is to grow Entercom Security into a trusted security partner across multiple communities, expanding into more advanced solutions responsibly as our capacity grows.</p>
             <p className="text-gray-600 text-sm">We are committed to building trust through consistent delivery, not promises.</p>
         </div>    
